@@ -1,0 +1,8 @@
+POST localhost:8080/hourIncome
+Content-Type: application/json
+
+{
+  "year": 2013,
+  "month": "APRIL",
+  "salary": 123
+}

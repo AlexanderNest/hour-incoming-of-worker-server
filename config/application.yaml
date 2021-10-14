@@ -1,0 +1,4 @@
+server:
+  dayServer:
+    host: https://isdayoff.ru/
+  workingHours: 8
