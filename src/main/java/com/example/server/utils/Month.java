@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class Month {
-    private static HashMap<String, String> month = new HashMap<>();
+    private static final HashMap<String, String> month = new HashMap<>();
 
     static {
         month.put("JANUARY", "01");
