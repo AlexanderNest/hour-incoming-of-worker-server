@@ -47,7 +47,17 @@ public class Service {
             throw new IncorrectYearException(year);
         }
 
-        String url = dayServerHost + incomingDto.getYear() + numericMonth;
+        int workingDays = getWorkingDaysCount(String.valueOf(year), numericMonth);
+
+        double hourIncome = salary / workingDays / this.workingHours;
+        hourIncome = DoubleRounder.round(hourIncome, 2);
+
+
+        return new OutgoingDto(year, incomingDto.getMonth(), salary, hourIncome);
+    }
+
+    private int getWorkingDaysCount(String year, String numericMonth) throws IOException, InterruptedException {
+        String url = dayServerHost + year + numericMonth;
 
         HttpClient client = HttpClient.newHttpClient();
 
@@ -68,10 +78,8 @@ public class Service {
             log.info("Day: " + day + " - " + response.body());
         }
 
-        double hourIncome = salary / workingDays / this.workingHours;
-        hourIncome = DoubleRounder.round(hourIncome, 2);
 
-        return new OutgoingDto(year, incomingDto.getMonth(), salary, hourIncome);
+       return workingDays;
     }
 
 }
